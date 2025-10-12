@@ -16,19 +16,32 @@ public class DeleteNFTServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String idParam = req.getParameter("id");
-            if (idParam != null || !idParam.isEmpty()) {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing NFT Id");
+
+            if (idParam == null || idParam.isEmpty()) {
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                resp.getWriter().write("Missing NFT Id");
                 return;
             }
-            long id = Long.parseLong(idParam);
-            repo.deleteById(id);
 
-            resp.sendRedirect("/nft/list");
+            long id = Long.parseLong(idParam);
+            boolean deleted = repo.deleteById(id);
+
+            if (deleted) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("NFT deleted successfully");
+                System.out.println("Deleted NFT id = " + id);
+            } else {
+                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                resp.getWriter().write("NFT not found");
+            }
+
         } catch (NumberFormatException e) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid NFT Id");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Invalid NFT Id format");
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error deleting NFT: " + e.getMessage());
         }
     }
 }

@@ -53,7 +53,7 @@
         <url-pattern>/nft/list</url-pattern>
     </servlet-mapping>
     
-    <!-- List NFTs -->
+    <!-- View NFT -->
     <servlet>
         <servlet-name>ViewNFTServlet</servlet-name>
         <servlet-class>com.t2404e.nft.controller.ViewNFTServlet</servlet-class>

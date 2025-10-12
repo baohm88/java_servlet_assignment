@@ -20,30 +20,38 @@ public class ListNFTServlet extends HttpServlet {
         String categoryId = req.getParameter("categoryId");
         String sort = req.getParameter("sort");
 
-        int page = 1, limit = 1;
-        try {
-            if (req.getParameter("page") != null) page = Integer.parseInt(req.getParameter("page"));
-            if (req.getParameter("limit") != null) limit = Integer.parseInt(req.getParameter("limit"));
+        int page = 1;
+        int limit = 3; // default fallback
 
+        try {
+            String pageParam = req.getParameter("page");
+            String limitParam = req.getParameter("limit");
+
+            if (pageParam != null && !pageParam.isEmpty()) {
+                page = Math.max(1, Integer.parseInt(pageParam));
+            }
+
+            if (limitParam != null && !limitParam.isEmpty()) {
+                limit = Integer.parseInt(limitParam);
+                if (limit != 3 && limit != 6 && limit != 9) {
+                    limit = 3; // enforce only allowed values
+                }
+            }
         } catch (NumberFormatException e) {
-            System.out.println("Bad Request");
+            System.out.println("Invalid pagination params: " + e.getMessage());
         }
 
         int offset = (page - 1) * limit;
 
         List<NFT> nftList = repo.searchNFTs(search, categoryId, sort, limit, offset);
-
-        for (NFT nft : nftList) {
-            System.out.println(nft.toString());
-        }
         int totalItems = repo.countNFTs(search, categoryId);
-        int totalPages = (int) Math.ceil((double)totalItems / limit);
+        int totalPages = (int) Math.ceil((double) totalItems / limit);
 
         req.setAttribute("nftList", nftList);
         req.setAttribute("currentPage", page);
-        req.setAttribute("totalPages", totalPages);
-        req.setAttribute("totalItems", totalItems);
         req.setAttribute("limit", limit);
+        req.setAttribute("totalItems", totalItems);
+        req.setAttribute("totalPages", totalPages);
 
         req.getRequestDispatcher("/list.jsp").forward(req, resp);
     }

@@ -43,8 +43,6 @@ public class ViewNFTServlet extends HttpServlet {
                 return;
             }
 
-            System.out.println("NFT: " + nft);
-
             req.setAttribute("nft", nft);
             req.getRequestDispatcher("/view.jsp").forward(req, resp);
         } catch (ServletException | NumberFormatException e) {

@@ -11,5 +11,5 @@ public interface INFTRepo {
     List<NFT> searchNFTs(String search, String categoryId, String sort, int limit, int offset);
     int countNFTs(String search, String categoryId);
     void updateById(long id, NFT nft);
-    void deleteById(long id);
+    boolean deleteById(long id);
 }

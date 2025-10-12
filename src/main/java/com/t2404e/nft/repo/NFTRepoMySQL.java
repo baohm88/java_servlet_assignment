@@ -24,7 +24,7 @@ public class NFTRepoMySQL implements INFTRepo {
             stmt.setDouble(5, nft.getPrice());
             stmt.setString(6, nft.getCreator());
             stmt.setString(7, nft.getWalletAddress());
-            stmt.setInt(8,nft.getStatus());
+            stmt.setInt(8, nft.getStatus());
 
             stmt.executeUpdate();
             System.out.println("Inserted NFT successfully");
@@ -150,21 +150,23 @@ public class NFTRepoMySQL implements INFTRepo {
     }
 
     @Override
-    public void deleteById(long id) {
+    public boolean deleteById(long id) {
         String sql = "UPDATE nfts SET status = -1, deleted_at = NOW() WHERE id = ?";
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setLong(1, id);
-            stmt.setLong(1, id);
+            stmt.setLong(1, id); // ← CHỈ SET 1 LẦN
             int rows = stmt.executeUpdate();
 
             if (rows > 0) {
                 System.out.println("Soft deleted NFT successfully");
+                return true;
             } else {
                 System.out.println("No NFT found to delete");
+                return false;
             }
         } catch (Exception e) {
             System.out.println("Failed to delete NFT: " + e.getMessage());
+            return false;
         }
     }
 
