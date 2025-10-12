@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <!-- 🟢 Create NFT -->
+    <servlet>
+        <servlet-name>CreateNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.CreateNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateNFTServlet</servlet-name>
+        <url-pattern>/nft/create</url-pattern>
+    </servlet-mapping>
+
+    <!-- 🟡 Edit NFT -->
+    <servlet>
+        <servlet-name>EditNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.EditNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditNFTServlet</servlet-name>
+        <url-pattern>/nft/edit</url-pattern>
+    </servlet-mapping>
+
+    <!-- Update NFT -->
+    <servlet>
+        <servlet-name>UpdateNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.UpdateNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateNFTServlet</servlet-name>
+        <url-pattern>/nft/update</url-pattern>
+    </servlet-mapping>
+
+    <!-- Delete NFT -->
+    <servlet>
+        <servlet-name>DeleteNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.DeleteNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteNFTServlet</servlet-name>
+        <url-pattern>/nft/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- List NFTs -->
+    <servlet>
+        <servlet-name>ListNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.ListNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListNFTServlet</servlet-name>
+        <url-pattern>/nft/list</url-pattern>
+    </servlet-mapping>
+    
+    <!-- List NFTs -->
+    <servlet>
+        <servlet-name>ViewNFTServlet</servlet-name>
+        <servlet-class>com.t2404e.nft.controller.ViewNFTServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewNFTServlet</servlet-name>
+        <url-pattern>/nft/view</url-pattern>
+    </servlet-mapping>
+</web-app>
