@@ -127,6 +127,9 @@
     </div>
 </div>
 
+<!-- Footer -->
+<jsp:include page="/footer.jsp" />
+
 <!-- Toast container -->
 <div id="alertContainer"></div>
 

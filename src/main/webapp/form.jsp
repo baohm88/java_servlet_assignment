@@ -181,6 +181,9 @@
     </form>
 </div>
 
+<!-- Footer -->
+<jsp:include page="/footer.jsp" />
+
 <script>
     // ✅ CKEditor initialization
     ClassicEditor.create(document.querySelector('#description')).catch(console.error);

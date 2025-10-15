@@ -48,13 +48,6 @@
             padding: 60px 20px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            color: #777;
-        }
     </style>
 </head>
 <body>
@@ -200,9 +193,7 @@
 </section>
 
 <!-- Footer -->
-<footer>
-    <p>© 2025 NFT Art Gallery — Crafted by Bao Ha</p>
-</footer>
+<jsp:include page="/footer.jsp" />
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
