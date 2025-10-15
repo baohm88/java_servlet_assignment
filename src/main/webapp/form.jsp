@@ -53,15 +53,8 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/nft/list">NFT Market</a>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a href="/nft/list" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/nft/create" class="nav-link">Create NFT</a></li>
-        </ul>
-    </div>
-</nav>
+
+<jsp:include page="/navbar.jsp" />
 
 <div class="form-container">
     <h3 class="text-center mb-4"><%= isEdit ? "Edit NFT" : "Create New NFT" %> 🖼️</h3>
@@ -179,7 +172,8 @@
             <% } %>
         </div>
 
-        <div class="text-end mt-4">
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a href="/nft/list" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary px-4">
                 <%= isEdit ? "Update NFT" : "Create NFT" %>
             </button>
